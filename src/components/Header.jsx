@@ -9,6 +9,8 @@ function Header() {
          padding: '80px 20px',
         color: 'white',
         
+     
+        
       }}
     >
       <h1>¡Pizzeria Mamma mia!</h1>
