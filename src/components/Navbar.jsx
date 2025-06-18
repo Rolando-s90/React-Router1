@@ -1,4 +1,5 @@
 import { formatCurrency } from '../utils/format';
+import Register from './Register';
 
 const Navbar = () => {
   const total = 25000;
