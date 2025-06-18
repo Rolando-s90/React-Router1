@@ -22,6 +22,8 @@ const CardPizza = ({ name, price, ingredients, img }) => {
       </div>
     </div>
   );
+
+  
 };
 
 export default CardPizza;
