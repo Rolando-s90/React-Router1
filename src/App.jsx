@@ -14,7 +14,6 @@ const App = () => {
         <LoginPages />
       </main>
       <Footer />
-      <div></div>
     </div>
     
   );
