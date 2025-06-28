@@ -3,11 +3,13 @@ function Header() {
     <header
        className="text-center"
       style={{
-        backgroundImage: 'url("/src/assets/img.jpg/header.jpg")',
+        backgroundImage: 'url("/src/assets/img.jpg/Header.jpg")',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
          padding: '80px 20px',
-        color: 'white',
+        color: 'white'
+    
+     
         
      
         
