@@ -1,4 +1,4 @@
-import { formatCurrency } from '../utils/format';
+import { formatCurrency } from '../data/format';
 
 const Navbar = () => {
   const total = 25000;

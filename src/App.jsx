@@ -1,16 +1,19 @@
-import Navbar from './components/Navbar';
-import Home from './pages/Home';
-import Footer from './components/Footer';
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import Inicio from "./components/Inicio";
+
+// import LoginPage from "./components/Login";
+// import Home from './pages/Home';
+ import Carrito from "./components/Carrito";
 
 const App = () => {
   return (
-    <div className="app-container">
+     <>
       <Navbar />
-      <main className="main-content">
-        <Home />
-      </main>
+      <Inicio />
+      {/* <Carrito /> */}
       <Footer />
-    </div>
+    </>
   );
 };
 
