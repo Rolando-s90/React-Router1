@@ -7,7 +7,7 @@ function Header() {
         backgroundSize: 'cover',
         backgroundPosition: 'center',
          padding: '80px 20px',
-        color: 'white'
+        color: 'black'
     
      
         

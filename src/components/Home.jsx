@@ -1,30 +1,30 @@
-
+import { useEffect, useState } from "react";
 import Header from '../components/Header';
-import CardPizza from '../components/CardPizza';
+import CardPizza from './CardPizza';
 
 const Home = () => {
+  const [pizzas, setPizzas] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:5000/api/pizzas")
+      .then(res => res.json())
+      .then(data => setPizzas(data))
+      .catch(err => console.error("Error al cargar las pizzas:", err));
+  }, []);
+
   return (
     <div className="container my-4">
       <Header />
       <div className="d-flex flex-wrap justify-content-center">
-        <CardPizza
-          name="Napolitana"
-          price={5950}
-          ingredients={["mozzarella", "tomates", "jamón", "orégano"]}
-          img=""
-        />
-        <CardPizza
-          name="Española"
-          price={6950}
-          ingredients={["mozzarella", "gorgonzola", "parmesano", "provolone"]}
-          img="https://firebasestorage.googleapis.com/v0/b/apis-varias-mias.appspot.com/o/pizzeria%2Fcheese-164872_640_com.jpg?alt=media&token=18b2b821-4d0d-43f2-a1c6-8c57bc388fab"
-        />
-        <CardPizza
-          name="Pepperoni"
-          price={6950}
-          ingredients={["mozzarella", "pepperoni", "orégano"]}
-          img="https://firebasestorage.googleapis.com/v0/b/apis-varias-mias.appspot.com/o/pizzeria%2Fpizza-1239077_640_com.jpg?alt=media&token=e7cde87a-08d5-4040-ac54-90f6c31eb3e3"
-        />
+        {pizzas.map(pizza => (
+          <CardPizza
+            key={pizza.id}
+            name={pizza.name}
+            price={pizza.price}
+            ingredients={pizza.ingredients}
+            img={pizza.img}
+          />
+        ))}
       </div>
     </div>
   );
