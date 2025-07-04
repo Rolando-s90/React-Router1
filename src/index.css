@@ -37,3 +37,13 @@
 .tarjeta button:hover {
   background-color: #4a52cc;
 }
+body, html, #root {
+  height: 100%;
+  margin: 0;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
