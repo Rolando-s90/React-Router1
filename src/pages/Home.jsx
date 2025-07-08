@@ -17,13 +17,8 @@ const Home = () => {
       <Header />
       <div className="d-flex flex-wrap justify-content-center">
         {pizzas.map(pizza => (
-          <CardPizza
-            key={pizza.id}
-            name={pizza.name}
-            price={pizza.price}
-            ingredients={pizza.ingredients}
-            img={pizza.img}
-          />
+          <CardPizza key={pizza.id} pizza={pizza} />
+
         ))}
       </div>
     </div>
