@@ -1,8 +1,25 @@
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+
 const Pizza = () => {
+  const { id } = useParams();
+  const [pizza, setPizza] = useState(null);
+
+  useEffect(() => {
+    fetch(`http://localhost:5000/api/pizzas/${id}`)
+      .then((res) => res.json())
+      .then((data) => setPizza(data))
+      .catch((err) => console.error(err));
+  }, [id]);
+
+  if (!pizza) return <p>Cargando...</p>;
+
   return (
-    <div className="container text-center my-5">
-      <h1>🍕 Pizza Napolitana</h1>
-      <p>Esta es una pizza deliciosa con ingredientes seleccionados.</p>
+    <div>
+      <h1>{pizza.name}</h1>
+      <img src={pizza.img} alt={pizza.name} />
+      <p>{pizza.desc}</p>
+      <p>Precio: ${pizza.price}</p>
     </div>
   );
 };

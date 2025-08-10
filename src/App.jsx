@@ -1,33 +1,52 @@
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
-
 import Home from "./pages/Home";
-import Register from "./pages/Register";
-import Login from "./pages/Login";
 import Cart from "./pages/Cart";
-import Pizza from "./pages/Pizza";
 import Profile from "./pages/Profile";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Pizza from "./pages/Pizza";
 import NotFound from "./pages/NotFound";
+import ProtectedRoute from "./components/ProtectedRoute";
+import PublicRoute from "./components/PublicRoute";
 
 const App = () => {
   return (
-    <div className="d-flex flex-column min-vh-100">
+    <div>
       <Navbar />
-      
-      <main className="flex-grow-1">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/pizza/:id" element={<Pizza />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </main>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/pizza/:id" element={<Pizza />} />
+        
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+          }
+        />
 
-      <Footer />
+        <Route
+          path="/login"
+          element={
+            <PublicRoute>
+              <Login />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="/register"
+          element={
+            <PublicRoute>
+              <Register />
+            </PublicRoute>
+          }
+        />
+
+        <Route path="*" element={<NotFound />} />
+      </Routes>
     </div>
   );
 };

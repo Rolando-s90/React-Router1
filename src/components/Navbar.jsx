@@ -1,34 +1,36 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useUser } from "../context/UserContext";
 import { useCart } from "../context/CartContext";
-import { formatCurrency } from "../utils/format";
 
 const Navbar = () => {
-  const { getTotal } = useCart();
-  const token = false;
+  const { user, logout } = useUser();
+  const { total } = useCart();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+  };
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark px-4 py-3">
-      <span className="navbar-brand mb-0 h1">🍕 Pizzeria Mamma Mia</span>
-
-      <div className="d-flex flex-wrap gap-2 ms-3">
-        <Link to="/" className="btn btn-outline-light btn-sm">🍕 Home</Link>
-
-        {token ? (
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark px-3">
+      <Link className="navbar-brand" to="/">Pizzería Mamma Mía</Link>
+      <div className="ms-auto d-flex align-items-center">
+        {user ? (
           <>
-            <Link to="/profile" className="btn btn-outline-light btn-sm">🔓 Profile</Link>
-            <button className="btn btn-outline-light btn-sm">🔒 Logout</button>
+            <span className="text-white me-3">Hola, {user.email}</span>
+            <button className="btn btn-outline-light me-3" onClick={handleLogout}>
+              Logout
+            </button>
           </>
         ) : (
           <>
-            <Link to="/login" className="btn btn-outline-light btn-sm">🔐 Login</Link>
-            <Link to="/register" className="btn btn-outline-light btn-sm">🔐 Register</Link>
+            <Link className="btn btn-outline-light me-2" to="/login">Login</Link>
+            <Link className="btn btn-outline-light me-3" to="/register">Registro</Link>
           </>
         )}
-      </div>
-
-      <div className="ms-auto text-white fw-bold">
-        <Link to="/cart" className="text-white text-decoration-none">
-          🛒 Total: ${formatCurrency(getTotal())}
+        <Link className="btn btn-success" to="/cart">
+          🛒 Total: ${total.toLocaleString()}
         </Link>
       </div>
     </nav>
